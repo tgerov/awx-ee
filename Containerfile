@@ -7,7 +7,7 @@ ARG ANSIBLE_GALAXY_CLI_ROLE_OPTS=
 USER root
 
 # BEGIN (remove this when we move back to using ansible-builder)
-RUN dnf install -y python3.9-pip git && pip3 install -U pip && pip3 install ansible-core
+RUN dnf install -y python39-pip git && pip3 install -U pip && pip3 install ansible-core
 # END (remove this when we move back to using ansible-builder)
 
 ADD _build /build
@@ -21,7 +21,7 @@ FROM $EE_BUILDER_IMAGE as builder
 COPY --from=galaxy /usr/share/ansible /usr/share/ansible
 
 # BEGIN (remove this when we move back to using ansible-builder)
-RUN dnf install -y python3.9-pip && pip3 install -U pip && pip3 install ansible-builder wheel
+RUN dnf install -y python39-pip && pip3 install -U pip && pip3 install ansible-builder wheel
 # END (remove this when we move back to using ansible-builder)
 
 ADD _build/requirements.txt requirements.txt
