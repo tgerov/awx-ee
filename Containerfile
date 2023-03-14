@@ -24,6 +24,8 @@ COPY --from=galaxy /usr/share/ansible /usr/share/ansible
 RUN dnf install -y python3.9-pip && pip3 install -U pip && pip3 install ansible-builder wheel
 # END (remove this when we move back to using ansible-builder)
 
+RUN update-crypto-policies --set LEGACY
+
 ADD _build/requirements.txt requirements.txt
 ADD _build/bindep.txt bindep.txt
 RUN ansible-builder introspect --sanitize --user-pip=requirements.txt --user-bindep=bindep.txt --write-bindep=/tmp/src/bindep.txt --write-pip=/tmp/src/requirements.txt
