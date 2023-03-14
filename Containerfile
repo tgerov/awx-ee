@@ -25,6 +25,7 @@ RUN dnf install -y python3.9-pip && pip3 install -U pip && pip3 install ansible-
 # END (remove this when we move back to using ansible-builder)
 
 RUN update-crypto-policies --set LEGACY
+USER root
 
 ADD _build/requirements.txt requirements.txt
 ADD _build/bindep.txt bindep.txt
@@ -85,6 +86,9 @@ RUN for dir in \
 
 WORKDIR /runner
 # END (remove this when we move back to using ansible-builder)
+
+RUN update-crypto-policies --set LEGACY
+USER root
 
 COPY --from=quay.io/ansible/receptor:devel /usr/bin/receptor /usr/bin/receptor
 RUN mkdir -p /var/run/receptor
