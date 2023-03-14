@@ -1,5 +1,5 @@
-ARG EE_BASE_IMAGE=quay.io/centos/centos:stream9
-ARG EE_BUILDER_IMAGE=quay.io/centos/centos:stream9
+ARG EE_BASE_IMAGE=quay.io/centos/centos:stream8
+ARG EE_BUILDER_IMAGE=quay.io/centos/centos:stream8
 
 FROM $EE_BASE_IMAGE as galaxy
 ARG ANSIBLE_GALAXY_CLI_COLLECTION_OPTS=
